@@ -99,7 +99,23 @@ class InstructionG01:
             
         if (do_comment and self.data["z"]==Z_MOVE_HEIGHT):
             
-            out += CAMERA speed {self.data['f']}")
+            out += ("    ; Move to (" +
+                f"{self.data['x'] + OFFSET_X}, " +
+                f"{self.data['y'] + OFFSET_Y}, " +               
+                f"{self.data['z'] + OFFSET_Z}) " +
+                f"at speed {self.data['f']}")
+        if (do_comment and self.data["z"]==Z_SKIP_HEIGHT):
+            out += ("    ; Skip to (" +
+                f"{self.data['x'] + OFFSET_X}, " +
+                f"{self.data['y'] + OFFSET_Y}, " +
+                f"{self.data['z'] + OFFSET_Z}) " +
+                f"at speed {self.data['f']}")
+        if (do_camera_comment and self.data["z"]==Z_MOVE_HEIGHT): 
+            out += ("    ; Camera Move to (" +
+                f"{self.data['x'] + OFFSET_X}, " +
+                f"{self.data['y'] + OFFSET_Y}, " +
+                f"{self.data['z'] + OFFSET_Z}) " +
+                f"at speed {self.data['f']}")
         if (do_camera_comment and self.data["z"]==Z_SKIP_HEIGHT): 
             out += ("    ; Camera Skip to (" +
                 f"{self.data['x'] + OFFSET_X}, " +
