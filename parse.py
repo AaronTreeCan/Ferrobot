@@ -99,23 +99,7 @@ class InstructionG01:
             
         if (do_comment and self.data["z"]==Z_MOVE_HEIGHT):
             
-            out += ("    ; Move to (" +
-                f"{self.data['x'] + OFFSET_X}, " +
-                f"{self.data['y'] + OFFSET_Y}, " +               
-                f"{self.data['z'] + OFFSET_Z}) " +
-                f"at speed {self.data['f']}")
-        if (do_comment and self.data["z"]==Z_SKIP_HEIGHT):
-            out += ("    ; Skip to (" +
-                f"{self.data['x'] + OFFSET_X}, " +
-                f"{self.data['y'] + OFFSET_Y}, " +
-                f"{self.data['z'] + OFFSET_Z}) " +
-                f"at speed {self.data['f']}")
-        if (do_camera_comment and self.data["z"]==Z_MOVE_HEIGHT): 
-            out += ("    ; Camera Move to (" +
-                f"{self.data['x'] + OFFSET_X}, " +
-                f"{self.data['y'] + OFFSET_Y}, " +
-                f"{self.data['z'] + OFFSET_Z}) " +
-                f"at speed {self.data['f']}")
+            out += CAMERA speed {self.data['f']}")
         if (do_camera_comment and self.data["z"]==Z_SKIP_HEIGHT): 
             out += ("    ; Camera Skip to (" +
                 f"{self.data['x'] + OFFSET_X}, " +
@@ -417,9 +401,17 @@ def set_offset(offsets):
     global OFFSET_X, OFFSET_Y, OFFSET_Z
     OFFSET_X, OFFSET_Y, OFFSET_Z = offsets
 
+def set_magnet_offset(offsets):
+    global MAGNET_X, MAGNET_Y, MAGNET_Z
+    MAGNET_X, MAGNET_Y, MAGNET_Z = offsets
+
+def set_pipette_offset(offsets):
+    global PIPETTE_X, PIPETTE_Y, PIPETTE_Z
+    PIPETTE_X, PIPETTE_Y, PIPETTE_Z = offsets
+
 def set_camera_offset(offsets):
-    global CAMERA_X, CAMERA_Y
-    CAMERA_X, CAMERA_Y = offsets
+    global CAMERA_X, CAMERA_Y, CAMERA_Z
+    CAMERA_X, CAMERA_Y, CAMERA_Z = offsets
 
 def create_new_file():
     global INSTRUCTIONS

@@ -10,23 +10,26 @@
 
 # Package libraries into program (python runtime, code, libraries)
 
-import time
+## python libraries
 import PySimpleGUI as sg
+import time
 import numpy
-import pages.code_editor
-import pages.viewport
-import welcome_page
-import editor_page
-import printer
-import camera
-import pages
-import parse
-import syringe
 import threading
 import tkinter as tki
 import os
+## importing our custom modules
+import pages.code_editor 
+import pages.viewport
+import welcome_page
+import editor_page
+import printer # handles communication with 3D Printer
+import camera # camera input (needs work)
+import pages
+import parse # G Code parsing
+import syringe
 
 
+# global flags for tracking status
 edit = False
 global camera_open
 camera_open = False
@@ -60,12 +63,12 @@ def get_next_file_name(directory, base_name="capture", extension="jpg"):
         int(f.split('_')[1].split('.')[0]) for f in files
         if f.startswith(base_name) and f.endswith(f".{extension}")
     ]
-    next_number = max(existing_numbers) + 1 if existing_numbers else 1
+    next_number = max(existing_numbers) + 1 if existing_numbers else 1 # increment from max 
     return f"{base_name}_{next_number}.{extension}"
 
 # sg.Input(key='LoadFilePath'), sg.FileBrowse(file_types=(("GCode Files", "*.gcode"),)),
 file_name = get_next_file_name(save_directory)
-file_path = os.path.join(save_directory, file_name)
+file_path = os.path.join(save_directory, file_name) # creates unique filename and file path (os independent)
 # Ensure the save directory exists
 os.makedirs(save_directory, exist_ok=True)
 # Event Loop to process "Fevents" and get the "values" of the inputs
@@ -77,7 +80,9 @@ cur_move_ind = 0
 all_images = []
 
 while True:
-    event, values = editor_page.window.read()  # Get the PYSimpleGUI event.
+    event, values = editor_page.window.read()  # Get the PYSimpleGUI event. 
+    # .read() is a blocking call the pauses program until user event happens
+    # event -> str identifier of the event and values -> dictionary storing state of window's elements 
     
     '''
     expo_time = 0.05

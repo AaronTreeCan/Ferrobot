@@ -72,9 +72,9 @@ def make_editor_window():
             sg.InputText(key='Yoff', size=(10, 1), expand_y=True, enable_events=True, default_text='-20'), 
             sg.InputText(key='Zoff', size=(10, 1), expand_y=True, enable_events=True, default_text='0'), 
         ],
-        [sg.Combo(['Pipette', 'Camera','Magnet'], key='element_offset',readonly=True,default_value='Magnet')],
+        [sg.Combo(['Pipette', 'Camera','Magnet', 'None'], key='element_offset',readonly=True,default_value='Magnet')],
         #[sg.Radio('Pipettor', group_id=1, default=True, key='_pipettor_mode_'), sg.Radio('Magnet stack', group_id=1, default=False, key='_magnet_mode_'), sg.Radio('Camera', group_id=1, default=False, key='_camera_mode_')]
-        #[sg.Button("Set Offset"), (sg.Text("Offset: (0, 0, 0)", key="_offset_")), sg.Button("Set Camera Offset"), (sg.Text("Offset: (0, 0)", key="_camera_offset_"))]
+        [sg.Button("Set Offset"), (sg.Text("Offset: (0, 0, 0)", key="_offset_")), sg.Button("Set Camera Offset"), (sg.Text("Offset: (0, 0)", key="_camera_offset_"))]
     
     ])
 
